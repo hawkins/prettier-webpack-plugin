@@ -1,6 +1,6 @@
 {
   "name": "prettier-webpack-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Process your files with Webpack on compile",
   "main": "index.js",
   "scripts": {
