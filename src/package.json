@@ -1,0 +1,27 @@
+{
+  "name": "prettier-webpack-plugin",
+  "version": "0.0.1",
+  "description": "Process your files with Webpack on compile",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hawkins/prettier-webpack-plugin.git"
+  },
+  "keywords": [
+    "prettier",
+    "webpack",
+    "plugin"
+  ],
+  "author": "Josh Hawkins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hawkins/prettier-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/hawkins/prettier-webpack-plugin#readme",
+  "dependencies": {
+    "prettier": "^0.11.0"
+  }
+}
