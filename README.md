@@ -16,7 +16,7 @@ Simply run `npm install --save-dev prettier-webpack-plugin` or `yarn add --dev p
 Then, in your Webpack config files, add the lines:
 
 ```JavaScript
-var PrettierPlugin = require('../src');
+var PrettierPlugin = require('prettier-webpack-plugin');
 
 module.exports = {
   // ... config settings here ...
