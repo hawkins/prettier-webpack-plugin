@@ -54,29 +54,38 @@ plugins: [
 ```JavaScript
 plugins: [
   new PrettierPlugin({
-    // Fit code within this line limit
-    printWidth: 80,
+    // Specify the length of line that the printer will wrap on.
+    printWidth: 80, // int
 
-    // Number of spaces it should use per tab
-    tabWidth: 2,
+    // Specify the number of spaces per indentation-level.
+    tabWidth: 2, // int
 
-    // If true, will use single instead of double quotes
-    singleQuote: false,
+    // Indent lines with tabs instead of spaces.
+    useTabs: false, // bool
 
-    // Controls the printing of trailing commas wherever possible
-    trailingComma: false,
+    // Print semicolons at the ends of statements.
+    semi: true, // bool
 
-    // Controls the printing of spaces inside array and objects
-    bracketSpacing: true,
+    // Use single quotes instead of double quotes.
+    singleQuote: false, // bool
+
+    // Print trailing commas wherever possible.
+    trailingComma: 'none', // string (none|es5|all)
+
+    // Print spaces between brackets in object literals.
+    bracketSpacing: true, // bool
+
+    // Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line
+    jsxBracketSameLine: false, // bool
 
     // Which parser to use. Valid options are 'flow' and 'babylon'
-    parser: 'babylon',
+    parser: 'babylon', // string (flow|babylon)
 
     // Which encoding scheme to use on files
-    encoding: 'utf-8',
+    encoding: 'utf-8', // string
 
     // Which file extensions to process
-    extensions: [ ".js", ".jsx" ]
+    extensions: [ ".js", ".jsx" ] // Array<string>
   })
 ],
 ```

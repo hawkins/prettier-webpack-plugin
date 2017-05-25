@@ -16,9 +16,12 @@ module.exports = class PrettierPlugin {
     this.prettierOptions = {
       printWidth: options.printWidth,
       tabWidth: options.tabWidth,
+      useTabs: options.useTabs,
+      semi: options.semi,
       singleQuote: options.singleQuote,
       trailingComma: options.trailingComma,
       bracketSpacing: options.bracketSpacing,
+      jsxBracketSameLine: options.jsxBracketSameLine,
       parser: options.parser
     };
   }
