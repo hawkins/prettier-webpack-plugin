@@ -1,8 +1,15 @@
 var PrettierPlugin = require('../src');
 
 module.exports = {
-  // ... config settings here ...
   plugins: [
-    new PrettierPlugin()
+    new PrettierPlugin({
+      printWidth: 60,
+      tabWidth: 5,
+      useTabs: true,
+      semi: false,
+      singleQuote: true,
+      trailingComma: 'all',
+      bracketSpacing: false
+    })
   ]
 };
