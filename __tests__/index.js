@@ -11,33 +11,38 @@ const defaultConfig = {
   plugins: [new PrettierPlugin()]
 };
 
-describe("it passes unit tests", () => {
-  it("runs with no config", done => {
-    const filename = `./temp/${uuid()}.js`;
-    webpack(
-      Object.assign({}, defaultConfig, { output: { filename } }),
-      (err, stats) => {
-        fs.readFile(sampleCodeFilename, { encoding: "utf8" }, (err, code) => {
-          if (err) throw err;
+const bundle = config => {
+  return new Promise((resolve, reject) => {
+    webpack(Object.assign({}, defaultConfig, config), (err, stats) => {
+      if (err) return reject(err);
 
-          const errors = stats.toString("errors-only");
-          if (errors) console.warn(errors);
+      const errors = stats.toString("errors-only");
+      if (errors) return reject(errors);
 
-          let didFileUpdate = false;
-          if (code !== sampleCode) didFileUpdate = true;
+      fs.readFile(sampleCodeFilename, { encoding: "utf8" }, (err, code) => {
+        if (err) return reject(err);
 
-          fs.unlink(filename, err => {
-            if (err) throw err;
-          });
-
-          fs.writeFile(sampleCodeFilename, sampleCode, err => {
-            if (err) throw err;
-          });
-
-          if (didFileUpdate) done();
-          else throw "File did not change!";
+        fs.writeFile(sampleCodeFilename, sampleCode, err => {
+          if (err) return reject(err);
         });
-      }
-    );
+
+        fs.unlink(config.output.filename, err => {
+          if (err) return reject(err);
+        });
+
+        let didFileUpdate = false;
+        if (code !== sampleCode) didFileUpdate = true;
+        if (!didFileUpdate) return reject("File did not change!");
+
+        resolve();
+      });
+    });
+  });
+};
+
+describe("it passes unit tests", () => {
+  it("runs with no config", () => {
+    const filename = `./temp/${uuid()}.js`;
+    return bundle({ output: { filename } });
   });
 });
