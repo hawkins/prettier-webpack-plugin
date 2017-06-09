@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unit tests prettifies source 1`] = `
+"var thisISsome = true
+  ? console.log(\\"bad - bad - bad - bad\\")
+  : console.error(\\"coed - coed - coed - coed\\");
+
+for (var i = 0; i < 10; i += 1) {
+  console.log(i - 1);
+}
+
+const JSON = {
+  a: \\"a\\",
+  b: \\"b\\"
+};
+"
+`;
+
+exports[`unit tests respects proper singleQuote config 1`] = `
+"var thisISsome = true
+  ? console.log('bad - bad - bad - bad')
+  : console.error('coed - coed - coed - coed');
+
+for (var i = 0; i < 10; i += 1) {
+  console.log(i - 1);
+}
+
+const JSON = {
+  a: 'a',
+  b: 'b'
+};
+"
+`;
+
+exports[`unit tests respects proper singleQuote config 2`] = `
+"var thisISsome = true
+  ? console.log(\\"bad - bad - bad - bad\\")
+  : console.error(\\"coed - coed - coed - coed\\");
+
+for (var i = 0; i < 10; i += 1) {
+  console.log(i - 1);
+}
+
+const JSON = {
+  a: \\"a\\",
+  b: \\"b\\"
+};
+"
+`;

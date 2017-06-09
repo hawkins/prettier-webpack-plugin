@@ -6,43 +6,98 @@ const fs = require("fs");
 const sampleCodeFilename = "./__tests__/sample-code.js";
 const sampleCode = fs.readFileSync(sampleCodeFilename, { encoding: "utf8" });
 
-const defaultConfig = {
-  entry: sampleCodeFilename,
-  plugins: [new PrettierPlugin()]
-};
-
 const bundle = config => {
   return new Promise((resolve, reject) => {
-    webpack(Object.assign({}, defaultConfig, config), (err, stats) => {
+    webpack(config, (err, stats) => {
       if (err) return reject(err);
 
       const errors = stats.toString("errors-only");
       if (errors) return reject(errors);
 
-      fs.readFile(sampleCodeFilename, { encoding: "utf8" }, (err, code) => {
+      fs.readFile(config.entry, { encoding: "utf8" }, (err, code) => {
         if (err) return reject(err);
-
-        fs.writeFile(sampleCodeFilename, sampleCode, err => {
-          if (err) return reject(err);
-        });
-
-        fs.unlink(config.output.filename, err => {
-          if (err) return reject(err);
-        });
 
         let didFileUpdate = false;
         if (code !== sampleCode) didFileUpdate = true;
         if (!didFileUpdate) return reject("File did not change!");
 
-        resolve();
+        resolve(code);
       });
     });
   });
 };
 
-describe("it passes unit tests", () => {
-  it("runs with no config", () => {
-    const filename = `./temp/${uuid()}.js`;
-    return bundle({ output: { filename } });
+const prepareEntry = async (code, file) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, code, err => {
+      if (err) reject(err);
+      else resolve();
+    });
+  });
+};
+
+const teardown = async files =>
+  Promise.all(
+    files.map(file => {
+      return new Promise((resolve, reject) => {
+        fs.unlink(file, err => {
+          if (err) reject(err);
+          else resolve();
+        });
+      });
+    })
+  );
+
+describe("unit tests", () => {
+  it("prettifies source", async () => {
+    const input = `./temp/${uuid()}.js`;
+    const output = `./temp/${uuid()}.js`;
+    await prepareEntry(sampleCode, input);
+    const processed = await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin()]
+    });
+    expect(processed).toMatchSnapshot();
+    return await teardown([input, output]);
+  });
+
+  it("respects proper singleQuote config", async () => {
+    const input = `./temp/${uuid()}.js`;
+    const output = `./temp/${uuid()}.js`;
+
+    await prepareEntry(sampleCode, input);
+    let processed = await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin({ singleQuote: true })]
+    });
+    expect(processed).toMatchSnapshot();
+
+    await prepareEntry(sampleCode, input);
+    processed = await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin({ singleQuote: false })]
+    });
+    expect(processed).toMatchSnapshot();
+
+    return await teardown([input, output]);
+  });
+
+  it("errors on improper singleQuote config", async () => {
+    const input = `./temp/${uuid()}.js`;
+    const output = `./temp/${uuid()}.js`;
+
+    await prepareEntry(sampleCode, input);
+    expect(
+      bundle({
+        entry: input,
+        output: { filename: output },
+        plugins: [new PrettierPlugin({ singleQuote: () => null })]
+      })
+    ).rejects.toMatchSnapshot();
+
+    return await teardown([input]);
   });
 });
