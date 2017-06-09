@@ -59,7 +59,19 @@ describe("unit tests", () => {
       plugins: [new PrettierPlugin()]
     });
     expect(processed).toMatchSnapshot();
-    return await teardown([input, output]);
+    return teardown([input, output]);
+  });
+
+  it("ignores unexpected config options in case they are for prettier", async () => {
+    const input = `./temp/${uuid()}.js`;
+    const output = `./temp/${uuid()}.js`;
+    await prepareEntry(sampleCode, input);
+    await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin({ maybeForPrettier: true })]
+    });
+    return teardown([input, output]);
   });
 
   it("respects proper singleQuote config", async () => {
@@ -82,7 +94,7 @@ describe("unit tests", () => {
     });
     expect(processed).toMatchSnapshot();
 
-    return await teardown([input, output]);
+    return teardown([input, output]);
   });
 
   it("errors on improper singleQuote config", async () => {
@@ -98,6 +110,6 @@ describe("unit tests", () => {
       })
     ).rejects.toMatchSnapshot();
 
-    return await teardown([input]);
+    return teardown([input]);
   });
 });
