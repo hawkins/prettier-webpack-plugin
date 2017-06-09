@@ -6,7 +6,7 @@ const fs = require("fs");
 const sampleCodeFilename = "./__tests__/sample-code.js";
 const sampleCode = fs.readFileSync(sampleCodeFilename, { encoding: "utf8" });
 
-const bundle = config => {
+const bundle = (config, alternative) => {
   return new Promise((resolve, reject) => {
     webpack(config, (err, stats) => {
       if (err) return reject(err);
@@ -14,7 +14,9 @@ const bundle = config => {
       const errors = stats.toString("errors-only");
       if (errors) return reject(errors);
 
-      fs.readFile(config.entry, { encoding: "utf8" }, (err, code) => {
+      // If we provided an alternative target, compare it to sample code
+      const target = alternative ? alternative : config.entry;
+      fs.readFile(target, { encoding: "utf8" }, (err, code) => {
         if (err) return reject(err);
 
         let didFileUpdate = false;
@@ -23,6 +25,21 @@ const bundle = config => {
 
         resolve(code);
       });
+    });
+  });
+};
+
+const prepareEntryWithExtras = async (code, extras, file) => {
+  return new Promise((resolve, reject) => {
+    let fileContents = "";
+    extras.forEach(extra => {
+      fileContents += extra + "\n";
+    });
+    fileContents += code;
+
+    fs.writeFile(file, fileContents, err => {
+      if (err) reject(err);
+      else resolve();
     });
   });
 };
@@ -74,7 +91,7 @@ describe("unit tests", () => {
     return teardown([input, output]);
   });
 
-  it("respects proper singleQuote config", async () => {
+  it("respects prettier config options", async () => {
     const input = `./temp/${uuid()}.js`;
     const output = `./temp/${uuid()}.js`;
 
@@ -97,7 +114,7 @@ describe("unit tests", () => {
     return teardown([input, output]);
   });
 
-  it("errors on improper singleQuote config", async () => {
+  it("throws on invalid prettier config options", async () => {
     const input = `./temp/${uuid()}.js`;
     const output = `./temp/${uuid()}.js`;
 
@@ -111,5 +128,36 @@ describe("unit tests", () => {
     ).rejects.toMatchSnapshot();
 
     return teardown([input]);
+  });
+
+  it("only processes files with specified extensions", async () => {
+    const entry = `./temp/${uuid()}.js`;
+    const moduleUUID = uuid();
+    const module = `./temp/${moduleUUID}.jsx`;
+    const moduleRelativeToEntry = `./${moduleUUID}.jsx`;
+    const output = `./temp/${uuid()}.js`;
+
+    await Promise.all([
+      prepareEntryWithExtras(
+        sampleCode,
+        [`const module = require("${moduleRelativeToEntry}")`],
+        entry
+      ),
+      prepareEntry(sampleCode, module)
+    ]);
+
+    // Expect the module to not change
+    expect(
+      bundle(
+        {
+          entry: entry,
+          output: { filename: output },
+          plugins: [new PrettierPlugin({ extensions: [".js"] })]
+        },
+        module
+      )
+    ).rejects.toMatchSnapshot();
+
+    return teardown([entry, module]);
   });
 });
