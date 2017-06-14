@@ -1,6 +1,6 @@
 # Prettier Webpack Plugin
 
-Automatically process your source files with Prettier when Webpack runs.
+Automatically process your source files with [Prettier](https://github.com/jlongster/prettier) when bundling via Webpack.
 
 ## How it works
 
@@ -16,7 +16,7 @@ Simply run `npm install --save-dev prettier-webpack-plugin` or `yarn add --dev p
 Then, in your Webpack config files, add the lines:
 
 ```JavaScript
-var PrettierPlugin = require('prettier-webpack-plugin');
+var PrettierPlugin = require("prettier-webpack-plugin");
 
 module.exports = {
   // ... config settings here ...
@@ -54,35 +54,44 @@ plugins: [
 ```JavaScript
 plugins: [
   new PrettierPlugin({
-    // Fit code within this line limit
-    printWidth: 80,
+    // Specify the length of line that the printer will wrap on.
+    printWidth: 80, // int
 
-    // Number of spaces it should use per tab
-    tabWidth: 2,
+    // Specify the number of spaces per indentation-level.
+    tabWidth: 2, // int
 
-    // If true, will use single instead of double quotes
-    singleQuote: false,
+    // Indent lines with tabs instead of spaces.
+    useTabs: false, // bool
 
-    // Controls the printing of trailing commas wherever possible
-    trailingComma: false,
+    // Print semicolons at the ends of statements.
+    semi: true, // bool
 
-    // Controls the printing of spaces inside array and objects
-    bracketSpacing: true,
+    // Use single quotes instead of double quotes.
+    singleQuote: false, // bool
+
+    // Print trailing commas wherever possible.
+    trailingComma: 'none', // string (none|es5|all)
+
+    // Print spaces between brackets in object literals.
+    bracketSpacing: true, // bool
+
+    // Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line
+    jsxBracketSameLine: false, // bool
 
     // Which parser to use. Valid options are 'flow' and 'babylon'
-    parser: 'babylon',
+    parser: 'babylon', // string (flow|babylon)
 
     // Which encoding scheme to use on files
-    encoding: 'utf-8',
+    encoding: 'utf-8', // string
 
     // Which file extensions to process
-    extensions: [ ".js", ".jsx" ]
+    extensions: [ ".js", ".jsx" ] // Array<string>
   })
 ],
 ```
 
-### Example
+### Testing
 
-A very crude example is included in the `/example` folder.
-To see what this plugin can do, run `cd example && ./test.sh` in your terminal.
-Notice how `entry.js` is now much prettier!
+`npm run test` or `yarn run test` will show you how tests are going currently.
+
+These tests can also serve as primitive examples for configuring Prettier Webpack Plugin.
