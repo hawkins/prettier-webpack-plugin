@@ -75,20 +75,18 @@ describe("unit tests", () => {
       output: { filename: output },
       plugins: [new PrettierPlugin()]
     });
-    expect(processed).toMatchSnapshot();
-    return teardown([input, output]);
+    return expect(processed).toMatchSnapshot();
   });
 
   it("ignores unexpected config options in case they are for prettier", async () => {
     const input = `./temp/${uuid()}.js`;
     const output = `./temp/${uuid()}.js`;
     await prepareEntry(sampleCode, input);
-    await bundle({
+    return bundle({
       entry: input,
       output: { filename: output },
       plugins: [new PrettierPlugin({ maybeForPrettier: true })]
     });
-    return teardown([input, output]);
   });
 
   it("respects prettier config options", async () => {
@@ -109,9 +107,7 @@ describe("unit tests", () => {
       output: { filename: output },
       plugins: [new PrettierPlugin({ singleQuote: false })]
     });
-    expect(processed).toMatchSnapshot();
-
-    return teardown([input, output]);
+    return expect(processed).toMatchSnapshot();
   });
 
   it("throws on invalid prettier config options", async () => {
@@ -119,6 +115,7 @@ describe("unit tests", () => {
     const output = `./temp/${uuid()}.js`;
 
     await prepareEntry(sampleCode, input);
+
     expect(
       bundle({
         entry: input,
@@ -126,8 +123,6 @@ describe("unit tests", () => {
         plugins: [new PrettierPlugin({ singleQuote: () => null })]
       })
     ).rejects.toMatchSnapshot();
-
-    return teardown([input]);
   });
 
   it("only processes files with specified extensions", async () => {
@@ -147,7 +142,7 @@ describe("unit tests", () => {
     ]);
 
     // Expect the module to not change
-    expect(
+    return expect(
       bundle(
         {
           entry: entry,
@@ -156,8 +151,6 @@ describe("unit tests", () => {
         },
         module
       )
-    ).rejects.toMatchSnapshot();
-
-    return teardown([entry, module]);
+    ).rejects.toBe("File did not change!");
   });
 });
