@@ -4,7 +4,9 @@
   "description": "Automatically process your source files with Prettier when bundling via Webpack",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "ac:add": "all-contributors add",
+    "ac:generate": "all-contributors generate"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -30,6 +32,7 @@
     "prettier": "^1.4.4"
   },
   "devDependencies": {
+    "all-contributors-cli": "^4.3.0",
     "jest": "^20.0.4",
     "uuid": "^3.0.1",
     "webpack": "^2.6.1"

@@ -1,0 +1,43 @@
+{
+  "projectName": "prettier-webpack-plugin",
+  "projectOwner": "hawkins",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "hawkins",
+      "name": "Josh Hawkins",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9123458?v=3",
+      "profile": "http://hawkins.github.io/",
+      "contributions": [
+        "code",
+        "doc",
+        "example",
+        "test"
+      ]
+    },
+    {
+      "login": "kud",
+      "name": "Erwann Mest",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/655838?v=3",
+      "profile": "http://kud.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "esganzerla",
+      "name": "Eduardo Sganzerla",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15572427?v=3",
+      "profile": "http://esganzerla.com.br",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
+    }
+  ]
+}
