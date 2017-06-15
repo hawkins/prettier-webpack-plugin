@@ -50,46 +50,31 @@ plugins: [
 ],
 ```
 
-**This is equivalent to**:
+Or, you could add options to the plugin in the form of an `Object`:
 
 ```JavaScript
 plugins: [
   new PrettierPlugin({
-    // Specify the length of line that the printer will wrap on.
-    printWidth: 80, // int
-
-    // Specify the number of spaces per indentation-level.
-    tabWidth: 2, // int
-
-    // Indent lines with tabs instead of spaces.
-    useTabs: false, // bool
-
-    // Print semicolons at the ends of statements.
-    semi: true, // bool
-
-    // Use single quotes instead of double quotes.
-    singleQuote: false, // bool
-
-    // Print trailing commas wherever possible.
-    trailingComma: 'none', // string (none|es5|all)
-
-    // Print spaces between brackets in object literals.
-    bracketSpacing: true, // bool
-
-    // Put the > of a multi-line JSX element at the end of the last line instead of being alone on the next line
-    jsxBracketSameLine: false, // bool
-
-    // Which parser to use. Valid options are 'flow' and 'babylon'
-    parser: 'babylon', // string (flow|babylon)
-
-    // Which encoding scheme to use on files
-    encoding: 'utf-8', // string
-
-    // Which file extensions to process
-    extensions: [ ".js", ".jsx" ] // Array<string>
+    printWidth: 80,               // Specify the length of line that the printer will wrap on.
+    tabWidth: 2,                  // Specify the number of spaces per indentation-level.
+    useTabs: false,               // Indent lines with tabs instead of spaces.
+    semi: true,                   // Print semicolons at the ends of statements.
+    encoding: 'utf-8',            // Which encoding scheme to use on files
+    extensions: [ ".js", ".ts" ]  // Which file extensions to process
   })
 ],
 ```
+
+> Again, see [Prettier's options](https://github.com/jlongster/prettier#api) for a complete list of options to specify for Prettier.
+
+Note that you can specify any option for Prettier to use in this object. So, all options are assumed to be for Prettier, and will thus be passed to prettier, with the exception of two for this plugin:
+
+- `encoding` (type: `String`)
+  - The encoding scheme to use for the file.
+  -  **Default**: `utf-8`
+- `extensions` (type: `[String]`)
+  - Which file extensions to pass.
+  - **Default**: `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass" ]`
 
 ### Testing
 
