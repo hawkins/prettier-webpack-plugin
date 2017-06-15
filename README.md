@@ -1,4 +1,5 @@
 # Prettier Webpack Plugin
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 Automatically process your source files with [Prettier](https://github.com/jlongster/prettier) when bundling via Webpack.
 
@@ -95,3 +96,15 @@ plugins: [
 `npm run test` or `yarn run test` will show you how tests are going currently.
 
 These tests can also serve as primitive examples for configuring Prettier Webpack Plugin.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+| [<img src="https://avatars3.githubusercontent.com/u/9123458?v=3" width="100px;"/><br /><sub>Josh Hawkins</sub>](http://hawkins.github.io/)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Documentation") [💡](#example-hawkins "Examples") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Tests") | [<img src="https://avatars0.githubusercontent.com/u/655838?v=3" width="100px;"/><br /><sub>Erwann Mest</sub>](http://kud.io)<br />[📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=kud "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/15572427?v=3" width="100px;"/><br /><sub>Eduardo Sganzerla</sub>](http://esganzerla.com.br)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Documentation") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Tests") |
+| :---: | :---: | :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
