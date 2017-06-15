@@ -2,28 +2,33 @@ const prettier = require("prettier");
 const fs = require("fs");
 const path = require("path");
 
+const DEFAULT_EXTENSIONS = [
+  ".js",
+  ".jsx",
+  ".ts",
+  ".tsx",
+  ".css",
+  ".less",
+  ".scss",
+  ".sass"
+];
+
+const DEFAULT_ENCODING = "utf-8";
+
 module.exports = class PrettierPlugin {
   constructor(options) {
     options = options || {};
 
     // Encoding to use when reading / writing files
-    this.encoding = options.encoding || "utf-8";
+    this.encoding = options.encoding || DEFAULT_ENCODING;
+    delete options.encoding;
 
     // Only process these files
-    this.extensions = options.extensions || [ ".js", ".jsx" ];
+    this.extensions = options.extensions || DEFAULT_EXTENSIONS;
+    delete options.extensions;
 
     // Override Prettier options if any are specified
-    this.prettierOptions = {
-      printWidth: options.printWidth,
-      tabWidth: options.tabWidth,
-      useTabs: options.useTabs,
-      semi: options.semi,
-      singleQuote: options.singleQuote,
-      trailingComma: options.trailingComma,
-      bracketSpacing: options.bracketSpacing,
-      jsxBracketSameLine: options.jsxBracketSameLine,
-      parser: options.parser
-    };
+    this.prettierOptions = options;
   }
 
   apply(compiler) {
