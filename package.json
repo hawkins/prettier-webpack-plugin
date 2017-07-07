@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "travis:test": "node --harmony ./node_modules/jest/bin/jest.js",
     "ac:add": "all-contributors add",
     "ac:generate": "all-contributors generate"
   },
