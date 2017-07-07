@@ -1,4 +1,6 @@
 # Prettier Webpack Plugin
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/hawkins/prettier-webpack-plugin.svg)](https://greenkeeper.io/)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 Automatically process your source files with [Prettier](https://github.com/jlongster/prettier) when bundling via Webpack.
