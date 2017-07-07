@@ -76,7 +76,7 @@ Note that you can specify any option for Prettier to use in this object. So, all
   -  **Default**: `utf-8`
 - `extensions` (type: `[String]`)
   - Which file extensions to pass.
-  - **Default**: `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass" ]`
+  - **Default**: `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass", ".graphql", ".json" ]`
 
 ### Testing
 
