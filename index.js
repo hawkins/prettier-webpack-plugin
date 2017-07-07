@@ -10,7 +10,9 @@ const DEFAULT_EXTENSIONS = [
   ".css",
   ".less",
   ".scss",
-  ".sass"
+  ".sass",
+  ".graphql",
+  ".json"
 ];
 
 const DEFAULT_ENCODING = "utf-8";
