@@ -9,19 +9,13 @@
     "ac:generate": "all-contributors generate"
   },
   "jest": {
-    "testPathIgnorePatterns": [
-      "sample-code.js"
-    ]
+    "testPathIgnorePatterns": ["sample-code.js"]
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hawkins/prettier-webpack-plugin.git"
   },
-  "keywords": [
-    "prettier",
-    "webpack",
-    "plugin"
-  ],
+  "keywords": ["prettier", "webpack", "plugin"],
   "author": "Josh Hawkins <hawkinswritescode@gmail.com>",
   "license": "MIT",
   "bugs": {
