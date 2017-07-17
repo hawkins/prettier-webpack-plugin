@@ -8,9 +8,13 @@ Automatically process your source files with [Prettier](https://github.com/jlong
 ## How it works
 
 This plugin reads all file dependencies in your dependency graph.
-If a file is found with a matching extension (`.js` and `.jsx` by default), the file is processed by Prettier and overwritten.
+If a file is found with a matching extension, the file is processed by Prettier and overwritten.
 
 You can provide options Prettier by specifying them when creating the plugin.
+
+## Looking for a loader?
+
+It's in its early stages, but you can find a loader version of this plugin here: [prettier-webpack-loader](https://github.com/hawkins/prettier-webpack-loader)
 
 ## Installation
 
