@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/hawkins/prettier-webpack-plugin#readme",
   "dependencies": {
-    "prettier": "^1.6.1"
+    "prettier": "^1.7.4"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.3.0",
