@@ -28,12 +28,13 @@
     "url": "https://github.com/hawkins/prettier-webpack-plugin/issues"
   },
   "homepage": "https://github.com/hawkins/prettier-webpack-plugin#readme",
-  "dependencies": {
-    "prettier": "^1.7.4"
+  "peerDependencies": {
+    "prettier": "^1.0.0"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.3.0",
     "jest": "^22.0.1",
+    "prettier": "^1.0.0",
     "uuid": "^3.0.1",
     "webpack": "^3.1.0"
   }
