@@ -2,18 +2,23 @@ const prettier = require("prettier");
 const fs = require("fs");
 const path = require("path");
 
-const DEFAULT_EXTENSIONS = [
-  ".js",
-  ".jsx",
-  ".ts",
-  ".tsx",
-  ".css",
-  ".less",
-  ".scss",
-  ".sass",
-  ".graphql",
-  ".json"
-];
+const DEFAULT_EXTENSIONS = prettier.getSupportInfo
+  ? prettier
+      .getSupportInfo()
+      .languages.map(l => l.extensions)
+      .reduce((accumulator, currentValue) => accumulator.concat(currentValue))
+  : [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".css",
+      ".less",
+      ".scss",
+      ".sass",
+      ".graphql",
+      ".json"
+    ];
 
 const DEFAULT_ENCODING = "utf-8";
 
