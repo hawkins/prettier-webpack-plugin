@@ -43,7 +43,7 @@ module.exports = class PrettierPlugin {
       // Explore each chunk (build output):
       compilation.chunks.forEach(chunk => {
         // Explore each module within the chunk (built inputs):
-        chunk.forEachModule(module => {
+        for (const module of chunk.modulesIterable) {
           if (!module.fileDependencies) return;
 
           // Explore each source file path that was included into the module
@@ -67,7 +67,7 @@ module.exports = class PrettierPlugin {
               });
             }
           });
-        });
+        }
       });
 
       callback();
