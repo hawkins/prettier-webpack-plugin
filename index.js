@@ -43,7 +43,7 @@ module.exports = class PrettierPlugin {
       // Explore each chunk (build output):
       compilation.chunks.forEach(chunk => {
         // Explore each module within the chunk (built inputs):
-        chunk.modules.forEach(module => {
+        chunk.forEachModule(module => {
           if (!module.fileDependencies) return;
 
           // Explore each source file path that was included into the module
