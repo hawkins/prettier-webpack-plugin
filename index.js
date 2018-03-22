@@ -39,38 +39,40 @@ module.exports = class PrettierPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin("emit", (compilation, callback) => {
-      // Explore each chunk (build output):
-      compilation.chunks.forEach(chunk => {
-        // Explore each module within the chunk (built inputs):
-        for (const module of chunk.modulesIterable) {
-          if (!module.fileDependencies) return;
+    compiler.hooks.emit.tapAsync('Prettier', (compilation, callback) => {
 
-          // Explore each source file path that was included into the module
-          module.fileDependencies.forEach(filepath => {
-            // If it matches
-            if (this.extensions.indexOf(path.extname(filepath)) !== -1) {
-              // Read the file
-              fs.readFile(filepath, this.encoding, (err, source) => {
-                // Format via prettier
-                var prettierSource = prettier.format(
-                  source,
-                  this.prettierOptions
-                );
+    const promises = [];
+    compilation.fileDependencies.forEach(filepath => {
+      if (this.extensions.indexOf(path.extname(filepath)) === -1) {
+        return;
+      }
 
-                // Rewrite file if prettier returned different source
-                if (prettierSource !== source) {
-                  fs.writeFile(filepath, prettierSource, this.encoding, err => {
-                    if (err) throw err;
-                  });
-                }
-              });
-            }
-          });
-        }
+      if (/node_modules/.exec(filepath)) {
+        return;
+      }
+      promises.push(new Promise((resolve, reject) => {
+        fs.readFile(filepath, this.encoding, (err, source) => {
+          if (err) {
+              return reject(err);
+          }
+          const prettierSource = prettier.format(source, this.prettierOptions);
+          if (prettierSource !== source) {
+            fs.writeFile(filepath, prettierSource, this.encoding, err => {
+              if (err) {
+                return reject(err);
+              }
+              resolve();
+            });
+          } else {
+            resolve();
+          }
+        });
+      }));
+    });
+
+    Promise.all(promises).then(() => {
+        callback();
       });
-
-      callback();
     });
   }
 };
