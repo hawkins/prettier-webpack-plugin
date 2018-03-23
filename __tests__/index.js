@@ -163,30 +163,4 @@ describe("unit tests", () => {
       )
     ).rejects.toBe("File did not change!");
   });
-
-  it("excludes files whose path matches the exclude regex", async () => {
-      const entry = `./temp/${uuid()}.js`;
-      const ignoreUuid = uuid();
-      const toIgnore = `./temp/ignored/${ignoreUuid}.js`;
-      const relIgnoreImport = `./ignored/${ignoreUuid}`;
-      const output = `./temp/${uuid()}.js`;
-
-      await Promise.all([
-          prepareEntryWithExtras(sampleCode,
-              [`const module = require("${relIgnoreImport}");`],
-              entry
-          ),
-          prepareEntry(sampleCode, toIgnore)
-      ]);
-
-      return expect(
-          bundle({
-                  entry: entry,
-                  mode: 'development',
-                  output: { filename: output },
-                  plugins: [ new PrettierPlugin({}, { exclude: /ignored/ })]
-              },
-              toIgnore)
-      ).rejects.toBe('File did not change!')
-  });
 });

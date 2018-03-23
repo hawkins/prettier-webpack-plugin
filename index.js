@@ -48,11 +48,6 @@ module.exports = class PrettierPlugin {
         return;
       }
 
-      const exclude = this.pluginOptions.exclude;
-      if (exclude && filepath.match(exclude)) {
-          return;
-      }
-
       promises.push(new Promise((resolve, reject) => {
         fs.readFile(filepath, this.encoding, (err, source) => {
           if (err) {
