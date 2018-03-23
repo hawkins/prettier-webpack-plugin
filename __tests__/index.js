@@ -54,19 +54,20 @@ const prepareEntry = async (code, file) => {
 };
 
 const teardown = path => {
-  fs.readdir(path, (err, filenames) => {
-    filenames.forEach(file => {
+  const filenames = fs.readdirSync(path);
+  filenames.forEach(file => {
       const curPath = path + "/" + file;
       if (fs.lstatSync(curPath).isDirectory()) teardown(curPath);
       else fs.unlinkSync(curPath);
-    });
-    fs.rmdirSync(path);
   });
+
+  fs.rmdirSync(path);
 };
 
 describe("unit tests", () => {
   beforeAll(() => {
     if (!fs.existsSync("./temp")) fs.mkdirSync("./temp");
+    if (!fs.existsSync('./temp/ignored')) fs.mkdirSync('./temp/ignored');
   });
 
   afterAll(() => {
@@ -161,5 +162,31 @@ describe("unit tests", () => {
         module
       )
     ).rejects.toBe("File did not change!");
+  });
+
+  it("excludes files whose path matches the exclude regex", async () => {
+      const entry = `./temp/${uuid()}.js`;
+      const ignoreUuid = uuid();
+      const toIgnore = `./temp/ignored/${ignoreUuid}.js`;
+      const relIgnoreImport = `./ignored/${ignoreUuid}`;
+      const output = `./temp/${uuid()}.js`;
+
+      await Promise.all([
+          prepareEntryWithExtras(sampleCode,
+              [`const module = require("${relIgnoreImport}");`],
+              entry
+          ),
+          prepareEntry(sampleCode, toIgnore)
+      ]);
+
+      return expect(
+          bundle({
+                  entry: entry,
+                  mode: 'development',
+                  output: { filename: output },
+                  plugins: [ new PrettierPlugin({ exclude: /ignored/ })]
+              },
+              toIgnore)
+      ).rejects.toBe('File did not change!')
   });
 });
