@@ -47,6 +47,11 @@ module.exports = class PrettierPlugin {
         return;
       }
 
+      const exclude = this.prettierOptions.exclude;
+      if (exclude && filepath.match(exclude)) {
+          return;
+      }
+
       if (/node_modules/.exec(filepath)) {
         return;
       }
