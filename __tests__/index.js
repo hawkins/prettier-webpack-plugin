@@ -184,7 +184,7 @@ describe("unit tests", () => {
                   entry: entry,
                   mode: 'development',
                   output: { filename: output },
-                  plugins: [ new PrettierPlugin({ exclude: /ignored/ })]
+                  plugins: [ new PrettierPlugin({}, { exclude: /ignored/ })]
               },
               toIgnore)
       ).rejects.toBe('File did not change!')
