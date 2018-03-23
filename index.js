@@ -23,7 +23,7 @@ const DEFAULT_EXTENSIONS = prettier.getSupportInfo
 const DEFAULT_ENCODING = "utf-8";
 
 module.exports = class PrettierPlugin {
-  constructor(options, pluginOptions) {
+  constructor(options) {
     options = options || {};
 
     // Encoding to use when reading / writing files
@@ -36,7 +36,6 @@ module.exports = class PrettierPlugin {
 
     // Override Prettier options if any are specified
     this.prettierOptions = options;
-    this.pluginOptions = pluginOptions || {};
   }
 
   apply(compiler) {
