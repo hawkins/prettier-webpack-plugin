@@ -52,9 +52,6 @@ module.exports = class PrettierPlugin {
           return;
       }
 
-      if (/node_modules/.exec(filepath)) {
-        return;
-      }
       promises.push(new Promise((resolve, reject) => {
         fs.readFile(filepath, this.encoding, (err, source) => {
           if (err) {
