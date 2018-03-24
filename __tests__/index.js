@@ -154,6 +154,7 @@ describe("unit tests", () => {
       bundle(
         {
           entry: entry,
+          mode: 'development',
           output: { filename: output },
           plugins: [new PrettierPlugin({ extensions: [".js"] })]
         },
