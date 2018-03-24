@@ -1,6 +1,6 @@
 {
   "name": "prettier-webpack-plugin",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "Automatically process your source files with Prettier when bundling via Webpack",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,8 @@
   },
   "homepage": "https://github.com/hawkins/prettier-webpack-plugin#readme",
   "peerDependencies": {
-    "prettier": "^1.0.0"
+    "prettier": "^1.0.0",
+    "webpack": "^4.2.0"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.11.1",

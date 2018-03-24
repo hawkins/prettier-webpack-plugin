@@ -18,6 +18,8 @@ It's in its early stages, but you can find a loader version of this plugin here:
 
 ## Installation
 
+> Note, for Webpack 4 support, install prettier-webpack-plugin@1. For Webpack < 4, install prettier-webpack-plugin@0
+
 Simply run `npm install --save-dev prettier prettier-webpack-plugin` or `yarn add --dev prettier prettier-webpack-plugin` to install.
 
 Then, in your Webpack config files, add the lines:
