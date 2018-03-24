@@ -38,6 +38,27 @@
         "doc",
         "test"
       ]
+    },
+    {
+      "login": "rkilgore-meta",
+      "name": "rkilgore-meta",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15929189?v=4",
+      "profile": "https://github.com/rkilgore-meta",
+      "contributions": [
+        "code",
+        "ideas",
+        "test"
+      ]
+    },
+    {
+      "login": "jacobbuck",
+      "name": "Jacob",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/830470?v=4",
+      "profile": "http://jacob.wtf",
+      "contributions": [
+        "ideas"
+      ]
     }
-  ]
+  ],
+  "repoType": "github"
 }

@@ -1,7 +1,7 @@
 # Prettier Webpack Plugin
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/hawkins/prettier-webpack-plugin.svg)](https://greenkeeper.io/)
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 
 Automatically process your source files with [Prettier](https://github.com/jlongster/prettier) when bundling via Webpack.
 
@@ -93,8 +93,9 @@ These tests can also serve as primitive examples for configuring Prettier Webpac
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars3.githubusercontent.com/u/9123458?v=3" width="100px;"/><br /><sub>Josh Hawkins</sub>](http://hawkins.github.io/)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Documentation") [💡](#example-hawkins "Examples") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Tests") | [<img src="https://avatars0.githubusercontent.com/u/655838?v=3" width="100px;"/><br /><sub>Erwann Mest</sub>](http://kud.io)<br />[📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=kud "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/15572427?v=3" width="100px;"/><br /><sub>Eduardo Sganzerla</sub>](http://esganzerla.com.br)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Documentation") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Tests") |
-| :---: | :---: | :---: |
+<!-- prettier-ignore -->
+| [<img src="https://avatars3.githubusercontent.com/u/9123458?v=3" width="100px;"/><br /><sub><b>Josh Hawkins</b></sub>](http://hawkins.github.io/)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Documentation") [💡](#example-hawkins "Examples") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=hawkins "Tests") | [<img src="https://avatars0.githubusercontent.com/u/655838?v=3" width="100px;"/><br /><sub><b>Erwann Mest</b></sub>](http://kud.io)<br />[📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=kud "Documentation") | [<img src="https://avatars2.githubusercontent.com/u/15572427?v=3" width="100px;"/><br /><sub><b>Eduardo Sganzerla</b></sub>](http://esganzerla.com.br)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Code") [📖](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Documentation") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=esganzerla "Tests") | [<img src="https://avatars2.githubusercontent.com/u/15929189?v=4" width="100px;"/><br /><sub><b>rkilgore-meta</b></sub>](https://github.com/rkilgore-meta)<br />[💻](https://github.com/hawkins/prettier-webpack-plugin/commits?author=rkilgore-meta "Code") [🤔](#ideas-rkilgore-meta "Ideas, Planning, & Feedback") [⚠️](https://github.com/hawkins/prettier-webpack-plugin/commits?author=rkilgore-meta "Tests") | [<img src="https://avatars1.githubusercontent.com/u/830470?v=4" width="100px;"/><br /><sub><b>Jacob</b></sub>](http://jacob.wtf)<br />[🤔](#ideas-jacobbuck "Ideas, Planning, & Feedback") |
+| :---: | :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 
