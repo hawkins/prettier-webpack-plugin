@@ -54,19 +54,20 @@ const prepareEntry = async (code, file) => {
 };
 
 const teardown = path => {
-  fs.readdir(path, (err, filenames) => {
-    filenames.forEach(file => {
+  const filenames = fs.readdirSync(path);
+  filenames.forEach(file => {
       const curPath = path + "/" + file;
       if (fs.lstatSync(curPath).isDirectory()) teardown(curPath);
       else fs.unlinkSync(curPath);
-    });
-    fs.rmdirSync(path);
   });
+
+  fs.rmdirSync(path);
 };
 
 describe("unit tests", () => {
   beforeAll(() => {
     if (!fs.existsSync("./temp")) fs.mkdirSync("./temp");
+    if (!fs.existsSync('./temp/ignored')) fs.mkdirSync('./temp/ignored');
   });
 
   afterAll(() => {
