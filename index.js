@@ -44,7 +44,7 @@ module.exports = class PrettierPlugin {
     const configOptions = prettier.resolveConfig.sync(this.configFile) || {};
 
     // Override Prettier options from config if any are specified
-    this.prettierOptions = { ...configOptions, ...options };
+    this.prettierOptions = Object.assign(configOptions, options);
   }
 
   apply(compiler) {
