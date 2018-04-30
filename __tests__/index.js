@@ -117,6 +117,27 @@ describe("unit tests", () => {
     return expect(processed).toMatchSnapshot();
   });
 
+  it("respects prettier config options from file", async () => {
+    const input = `./temp/${uuid()}.js`;
+    const output = `./temp/${uuid()}.js`;
+
+    await prepareEntry(sampleCode, input);
+    let processed = await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin({ configFile: `${process.cwd()}/prettier.config.json` })]
+    });
+    expect(processed).toMatchSnapshot();
+
+    await prepareEntry(sampleCode, input);
+    processed = await bundle({
+      entry: input,
+      output: { filename: output },
+      plugins: [new PrettierPlugin({ singleQuote: false, configFile: `${process.cwd()}/prettier.config.json` })]
+    });
+    return expect(processed).toMatchSnapshot();
+  });
+
   // TODO: Why does this fail to catch Prettier > `jest-validate` Validation Error?
   // it("throws on invalid prettier config options", async () => {
   //   const input = `./temp/${uuid()}.js`;

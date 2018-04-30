@@ -75,7 +75,7 @@ plugins: [
 
 > Again, see [Prettier's options](https://github.com/jlongster/prettier#api) for a complete list of options to specify for Prettier.
 
-Note that you can specify any option for Prettier to use in this object. So, all options are assumed to be for Prettier, and will thus be passed to prettier, with the exception of two for this plugin:
+Note that you can specify any option for Prettier to use in this object. So, all options are assumed to be for Prettier, and will thus be passed to prettier, with the exception of three for this plugin:
 
 - `encoding` (type: `String`)
   - The encoding scheme to use for the file.
@@ -83,6 +83,9 @@ Note that you can specify any option for Prettier to use in this object. So, all
 - `extensions` (type: `[String]`)
   - Which file extensions to pass.
   - **Default**: Either what your version of Prettier supports, or `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass", ".graphql", ".json" ]`
+- `configFile` (type: `String`)
+  - Optional value to supply global config file from your project in order to avoid hardcoding values in multiple places
+  - **Default**: `.prettierrc` (from your current project directory)
 
 ### Testing
 
