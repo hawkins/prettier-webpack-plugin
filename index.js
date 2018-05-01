@@ -22,6 +22,8 @@ const DEFAULT_EXTENSIONS = prettier.getSupportInfo
 
 const DEFAULT_ENCODING = "utf-8";
 
+const DEFAULT_CONFIG_FILE = `${process.cwd()}/.prettierrc`;
+
 module.exports = class PrettierPlugin {
   constructor(options) {
     options = options || {};
@@ -34,8 +36,15 @@ module.exports = class PrettierPlugin {
     this.extensions = options.extensions || DEFAULT_EXTENSIONS;
     delete options.extensions;
 
-    // Override Prettier options if any are specified
-    this.prettierOptions = options;
+    // Utilize this config file for options
+    this.configFile = options.configFile || DEFAULT_CONFIG_FILE;
+    delete options.configFile;
+
+    // Resolve the config options from file to an object
+    const configOptions = prettier.resolveConfig.sync(this.configFile) || {};
+
+    // Override Prettier options from config if any are specified
+    this.prettierOptions = Object.assign(configOptions, options);
   }
 
   apply(compiler) {
