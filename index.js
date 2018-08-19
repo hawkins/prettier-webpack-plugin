@@ -64,7 +64,7 @@ module.exports = class PrettierPlugin {
           if (err) {
               return reject(err);
           }
-          const prettierSource = prettier.format(source, this.prettierOptions);
+          const prettierSource = prettier.format(source, Object.assign({}, this.prettierOptions, { filepath }));
           if (prettierSource !== source) {
             fs.writeFile(filepath, prettierSource, this.encoding, err => {
               if (err) {
