@@ -1,6 +1,6 @@
 {
   "name": "prettier-webpack-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automatically process your source files with Prettier when bundling via Webpack",
   "main": "index.js",
   "scripts": {
