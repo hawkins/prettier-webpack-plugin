@@ -82,7 +82,7 @@ Note that you can specify any option for Prettier to use in this object. So, all
   -  **Default**: `utf-8`
 - `extensions` (type: `[String]`)
   - Which file extensions to pass.
-  - **Default**: Either what your version of Prettier supports, or `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass", ".graphql", ".json" ]`
+  - **Default**: Either what your version of Prettier supports, or `[ ".js", ".jsx", ".ts", ".tsx", ".css", ".less", ".scss", ".sass", ".graphql", ".json", ".vue" ]`
 - `configFile` (type: `String`)
   - Optional value to supply global config file from your project in order to avoid hardcoding values in multiple places
   - **Default**: `.prettierrc` (from your current project directory)
