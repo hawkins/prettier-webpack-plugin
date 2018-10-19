@@ -10,19 +10,13 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "sample-code.js"
-    ]
+    "testPathIgnorePatterns": ["sample-code.js"]
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hawkins/prettier-webpack-plugin.git"
   },
-  "keywords": [
-    "prettier",
-    "webpack",
-    "plugin"
-  ],
+  "keywords": ["prettier", "webpack", "plugin"],
   "author": "Josh Hawkins <hawkinswritescode@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -35,9 +29,10 @@
   },
   "devDependencies": {
     "all-contributors-cli": "5.4.1",
-    "jest": "22.4.3",
+    "jest": "^23.6.0",
     "prettier": "1.14.3",
     "uuid": "3.3.2",
-    "webpack": "4.21.0"
+    "webpack": "4.21.0",
+    "jest-cli": "^23.6.0"
   }
 }
