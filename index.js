@@ -8,16 +8,18 @@ const DEFAULT_EXTENSIONS = prettier.getSupportInfo
       .languages.map(l => l.extensions)
       .reduce((accumulator, currentValue) => accumulator.concat(currentValue))
   : [
+      ".css",
+      ".graphql",
       ".js",
+      ".json",
       ".jsx",
+      ".less",
+      ".sass",
+      ".scss",
       ".ts",
       ".tsx",
-      ".css",
-      ".less",
-      ".scss",
-      ".sass",
-      ".graphql",
-      ".json"
+      ".vue",
+      ".yaml",
     ];
 
 const DEFAULT_ENCODING = "utf-8";
