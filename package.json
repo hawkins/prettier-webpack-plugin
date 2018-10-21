@@ -1,6 +1,6 @@
 {
   "name": "prettier-webpack-plugin",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Automatically process your source files with Prettier when bundling via Webpack",
   "main": "index.js",
   "scripts": {
@@ -10,13 +10,19 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testPathIgnorePatterns": ["sample-code.js"]
+    "testPathIgnorePatterns": [
+      "sample-code.js"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hawkins/prettier-webpack-plugin.git"
   },
-  "keywords": ["prettier", "webpack", "plugin"],
+  "keywords": [
+    "prettier",
+    "webpack",
+    "plugin"
+  ],
   "author": "Josh Hawkins <hawkinswritescode@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -30,9 +36,9 @@
   "devDependencies": {
     "all-contributors-cli": "5.4.1",
     "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
     "prettier": "1.14.3",
     "uuid": "3.3.2",
-    "webpack": "4.21.0",
-    "jest-cli": "^23.6.0"
+    "webpack": "4.21.0"
   }
 }
