@@ -49,38 +49,45 @@ module.exports = class PrettierPlugin {
 
   apply(compiler) {
     compiler.hooks.emit.tapAsync('Prettier', (compilation, callback) => {
-
-    const promises = [];
-    compilation.fileDependencies.forEach(filepath => {
-      if (this.extensions.indexOf(path.extname(filepath)) === -1) {
-        return;
-      }
-
-      if (/node_modules/.exec(filepath)) {
-        return;
-      }
-      promises.push(new Promise((resolve, reject) => {
-        fs.readFile(filepath, this.encoding, (err, source) => {
-          if (err) {
-              return reject(err);
-          }
-          const prettierSource = prettier.format(source, Object.assign({}, this.prettierOptions, { filepath }));
-          if (prettierSource !== source) {
-            fs.writeFile(filepath, prettierSource, this.encoding, err => {
-              if (err) {
+      const promises = [];
+      compilation.fileDependencies.forEach(filepath => {
+        if (this.extensions.indexOf(path.extname(filepath)) === -1) {
+          return;
+        }
+  
+        if (/node_modules/.exec(filepath)) {
+          return;
+        }
+        promises.push(new Promise((resolve, reject) => {
+          fs.readFile(filepath, this.encoding, (err, source) => {
+            if (err) {
                 return reject(err);
+            }
+            
+            try{
+              const prettierSource = prettier.format(source, Object.assign({}, this.prettierOptions, { filepath }));
+              if (prettierSource !== source) {
+                fs.writeFile(filepath, prettierSource, this.encoding, err => {
+                  if (err) {
+                    return reject(err);
+                  }
+                  resolve();
+                });
+              } else {
+                resolve();
               }
-              resolve();
-            });
-          } else {
-            resolve();
-          }
-        });
-      }));
-    });
-
-    Promise.all(promises).then(() => {
+            }
+            catch(err){
+              return reject(err);
+            }
+          });
+        }));
+      });
+  
+      Promise.all(promises).then(() => {
         callback();
+      }).catch(err => {
+        callback(err);
       });
     });
   }
