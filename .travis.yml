@@ -10,10 +10,8 @@ before_script:
   - greenkeeper-lockfile-update
   - npm --version
 after_script: greenkeeper-lockfile-upload
-install:
-  - npm install
-script:
-  - npm test
+#install: npm install
+script: npm test
 cache:
   yarn: true
   directories:
