@@ -87,7 +87,6 @@ module.exports = class PrettierPlugin {
       Promise.all(promises).then(() => {
         callback();
       }).catch(err => {
-        //compilation.errors.push(err);
         callback(err);
       });
     });
