@@ -1,18 +1,26 @@
 language: node_js
 node_js:
-  - node
-  - 7
-  - 8
-  - 9
-  - 10
+- node
+- 7
+- 8
+- 9
+- 10
 before_install: npm --global install greenkeeper-lockfile
 before_script:
-  - greenkeeper-lockfile-update
-  - npm --version
+- greenkeeper-lockfile-update
+- npm --version
 after_script: greenkeeper-lockfile-upload
 install: npm install
 script: npm test
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
+deploy:
+  provider: npm
+  email: hawkinswritescode@gmail.com
+  api_key:
+    secure: BCIflpiXUq0ILAVRbgBeGCS8OpMHrIreQU/yLBXJNXrwRmsMr/SU9vrCy47NQdlqXaSa1ZFRifhh/zNqefq6OrSkWMBJpBkSZf3VVTXv1RyMxVuI9XxvtSMARBUajLOOYgohuGZzhCXrKuh6e/FSE7H836A2OgyFzrAhIYNoB0xW6f9RGM4uPtirKiGDN+LMw4R87bv6P8vTB4aGDVevz7P5YVopia9wN69Sd85XrgFCQeeZM6/BiWdF7X3Ju5rQ1cZMOnoiGgdFSxp2e5r8QcISmgczQ+I5h8QeHnaZl8KNjWYJekTRHHikfz6yAoBj/sOzoi/pxRQA6JsDWJWw1npWQc63E2MeNnIheZqLe+ruDG4hKd2E61l+CLTt4rnwvdQMkqd6GMKuKCc0zPszjQEMhKVWTy864SES0mlG4/h1gkTIvG+h7xs8ZvrEkNlE2ur1/ZmLQ3etXdcLCh7mlRha5CtiJiws/6Ym2ljFFMWYCM/Bxu2UgbcOHJeTwYEKN3ZylWJoScHbHD2G19iFL1aUw+VnqAGkW8yu/MvhkQ3/Le9/zbIVdAt6hluCJyEin+cE+n3FJOCVg9oKGIIYV/9VuWTwlWXMU9z35Pi4tkp4oZUaO8n/2l/bX1ZRdrLCUnhjYGjLztMABahfUn6bI1zYzu8Mbdf3Mm7MANlsPbQ=
+  on:
+    tags: true
+    repo: hawkins/prettier-webpack-plugin
