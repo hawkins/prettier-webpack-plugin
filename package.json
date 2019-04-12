@@ -36,7 +36,7 @@
   "devDependencies": {
     "all-contributors-cli": "5.4.1",
     "jest": "^23.6.0",
-    "prettier": "1.14.3",
+    "prettier": "1.17.0",
     "uuid": "3.3.2",
     "webpack": "4.23.0",
     "jest-cli": "^23.6.0"
