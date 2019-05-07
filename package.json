@@ -34,7 +34,7 @@
     "webpack": "^4.2.0"
   },
   "devDependencies": {
-    "all-contributors-cli": "5.4.1",
+    "all-contributors-cli": "6.4.0",
     "jest": "^23.6.0",
     "prettier": "1.14.3",
     "uuid": "3.3.2",
